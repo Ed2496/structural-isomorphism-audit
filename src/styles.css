@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Noto Serif TC", "Noto Sans TC", "Songti TC", serif;
+
+  --color-background: #eef3f0;
+  --color-foreground: #132824;
+  --color-muted: #4e6e67;
+  --color-subtle: #7a9a92;
+  --color-card: #ffffff;
+  --color-paper: #f4faf7;
+  --color-primary: #0c6e66;
+  --color-primary-foreground: #f3fbf9;
+  --color-border: #d3e3dd;
+  --color-ink: #0c1f1c;
+  --color-ink-foreground: #e6f1ed;
+  --color-hero-muted: #a8c4bc;
+  --color-destructive: #b42318;
+  --color-warning: #9a6700;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  --ease-out-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    line-height: 1.75;
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
+    font-family: var(--font-display);
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.55s var(--ease-out-smooth),
+    transform 0.55s var(--ease-out-smooth);
+}
+
+.reveal.on {
+  opacity: 1;
+  transform: none;
+}
+
+.hero-wash {
+  background-color: var(--color-ink);
+  background-image: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--color-primary) 14%, var(--color-ink)) 0%,
+    var(--color-ink) 72%
+  );
+}
+
+.progress-bar {
+  transform-origin: left center;
+  transform: scaleX(var(--progress, 0));
+}
